@@ -7,7 +7,7 @@ const BitcoinData = ({ fetchedData })  => {
   return (
     <ul>
       {fetchedData.prices.map(item =>
-        <li key={item[0]}>{item[0]}</li>)}
+        <li key={item[0]}>{item[1]}</li>)}
     </ul>
   )
 }
@@ -20,24 +20,6 @@ const App = () => {
   const [toDate, setToDate] = useState('')
 
 
-  /* function editData (array) {
-    let prices = []
-    let market_caps = []
-    let total_volumes = []
-
-    for (let i = 0; i < data.prices.length; i+=24) {
-      prices.push(array.prices[i])
-      market_caps.push(array.market_caps[i])
-      total_volumes.push(array.total_volumes[i])
-    }
-
-    setData({
-      market_caps: market_caps,
-      prices: prices,
-      total_volumes: total_volumes
-    })
-  } */
-
   const fetchData = async () => {
 
     const oneHour = 3600
@@ -49,25 +31,25 @@ const App = () => {
 
     const { data } = res
     
-    let tempObj = {
-      prices: [],
-      market_caps: [],
-      total_volumes: []
-    }
+    let tempObj = {}
 
-    for (let i = 0; i < data.prices.length; i += 24) {
-      tempObj.prices.push(data.prices[i])
-      tempObj.market_caps.push(data.market_caps[i])
-      tempObj.total_volumes.push(data.total_volumes[i])
-    }
+    Object.keys(data).forEach(key => tempObj[key] = data[key])
 
     console.log(tempObj)
 
-    console.log(typeof fetchedData)
-    console.log(typeof tempObj)
+    for (const property in data) {
+      if (Array.isArray(tempObj[property])) {
+        tempObj[property] = []
+        for (let i = 0; i < data[property].length; i += 24) {
+          tempObj[property].push(data[property][i])
+        }
+      }
+    }
+
 
     setFetchedData(tempObj)
 
+    console.log(tempObj)
 
     setFromDate('')
     setToDate('')
@@ -86,7 +68,6 @@ const App = () => {
 
     fetchData()
 
-    console.log(fetchedData)
   }
 
    
