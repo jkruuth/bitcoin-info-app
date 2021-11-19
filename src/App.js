@@ -1,38 +1,21 @@
 import { useState } from "react";
 import axios from "axios"
+import DownwardTrend from "./components/DownwardTrend";
+import HighestVolume from "./components/HighestVolume";
+import OptimalDay from "./components/OptimalDay";
 
 const BitcoinData = ({ fetchedData })  => {
-  if (Object.keys(fetchedData).length === 0) return <p>No fetched data</p>
+  
+  if (Object.keys(fetchedData).length === 0 || (fetchedData.prices.length === 1)) {
+    return <p>Not enough fetched data</p>  
+  } 
 
-  if (Object.keys(fetchedData).length === 1) return <p>Not enough data</p>
-
-  let streak = 1
-
-  const tempArr = fetchedData.prices.slice(1)
-
-  for (let i = 0; i < tempArr.length; i++) {
-    if (tempArr[i][1] < fetchedData.prices[i][1]) streak++;
-    else {
-      streak = 0;
-    }
-  }
-
-  const highestVolume = {
-    date: fetchedData.total_volumes[0][0],
-    price: fetchedData.total_volumes[0][1]
-  }
-
-  for (let i = 1; i < fetchedData.total_volumes.length; i++) {
-    if (fetchedData.total_volumes[i][1] > highestVolume.price) {
-      highestVolume.date = fetchedData.total_volumes[i][0]
-      highestVolume.price = fetchedData.total_volumes[i][1]
-    }
-  }
+  
 
   const getDayMonthYear = (timestamp) => {
     const date = new Date(timestamp)
 
-    return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
   }
 
   return (
@@ -41,8 +24,9 @@ const BitcoinData = ({ fetchedData })  => {
        {fetchedData.prices.map(item =>
          <li key={item[0]}>{getDayMonthYear(item[0])} - {item[1]} </li>)}
      </ul>
-     <p>The maximum amount of days bitcoin´s price was decreasing in a row: {streak}</p>
-     <p>The date with the highest trading volume and the volume on that day in euros: {getDayMonthYear(highestVolume.date)} - {highestVolume.price}e</p>
+     <DownwardTrend fetchedData={fetchedData}/>
+     <HighestVolume fetchedData={fetchedData} getDayMonthYear={getDayMonthYear} />
+     <OptimalDay fetchedData={fetchedData}/>
     </div>
   )
 }
@@ -61,6 +45,13 @@ const App = () => {
 
     const fromQuery = new Date(fromDate).getTime() / 1000
     const toQuery = new Date(toDate).getTime() / 1000
+
+    if (fromQuery > toQuery) {
+      alert('"To" date can not be before "from" date')
+      setFromDate('')
+      setToDate('')
+      return
+    }
 
     const res = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from=${fromQuery}&to=${toQuery + oneHour}`)
 
@@ -95,14 +86,12 @@ const App = () => {
     event.preventDefault()
 
     if (!fromDate || !toDate) {
-      
       setFromDate('')
       setToDate('')
       return
     }
 
     fetchData()
-
   }
 
    
