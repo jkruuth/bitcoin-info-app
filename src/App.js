@@ -3,6 +3,7 @@ import axios from "axios"
 import DownwardTrend from "./components/DownwardTrend";
 import HighestVolume from "./components/HighestVolume";
 import OptimalDay from "./components/OptimalDay";
+import "./App.css"
 
 const BitcoinData = ({ fetchedData })  => {
   

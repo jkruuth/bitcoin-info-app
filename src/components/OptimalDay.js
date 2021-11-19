@@ -1,3 +1,5 @@
+import { countStreak } from "./DownwardTrend"
+
 const OptimalDay = ({ fetchedData }) => {
     let highestPrice = fetchedData.prices[0][1]
     let lowestPrice = fetchedData.prices[0][1]
@@ -7,7 +9,9 @@ const OptimalDay = ({ fetchedData }) => {
         if (fetchedData.prices[i][1] < lowestPrice) lowestPrice = fetchedData.prices[i][1]
     }
 
-    const showData = highestPrice === fetchedData.prices[0][1] 
+    const streak = countStreak(fetchedData)
+
+    const showData = streak === fetchedData.prices.length 
         ? 'You should not buy nor sell on any day in given time interval' 
         : highestPrice + ' and ' + lowestPrice
 
