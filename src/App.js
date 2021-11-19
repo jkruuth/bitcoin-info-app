@@ -10,8 +10,6 @@ const BitcoinData = ({ fetchedData })  => {
     return <p>Not enough fetched data</p>  
   } 
 
-  
-
   const getDayMonthYear = (timestamp) => {
     const date = new Date(timestamp)
 
@@ -37,7 +35,6 @@ const App = () => {
   const [fetchedData, setFetchedData] = useState({})
   const [fromDate, setFromDate] = useState('')
   const [toDate, setToDate] = useState('')
-
 
   const fetchData = async () => {
 
@@ -72,7 +69,6 @@ const App = () => {
       }
     }
 
-
     setFetchedData(tempObj)
 
     console.log(tempObj)
@@ -80,7 +76,6 @@ const App = () => {
     setFromDate('')
     setToDate('')
   }
-
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -93,8 +88,6 @@ const App = () => {
 
     fetchData()
   }
-
-   
 
   return (
     <div className="App">
