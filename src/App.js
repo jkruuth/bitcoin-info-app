@@ -25,7 +25,7 @@ const BitcoinData = ({ fetchedData })  => {
      </ul>
      <DownwardTrend fetchedData={fetchedData}/>
      <HighestVolume fetchedData={fetchedData} getDayMonthYear={getDayMonthYear} />
-     <OptimalDay fetchedData={fetchedData}/>
+     <OptimalDay fetchedData={fetchedData} getDayMonthYear={getDayMonthYear}/>
     </div>
   )
 }
@@ -55,17 +55,31 @@ const App = () => {
 
     const { data } = res
     
+    console.log(data)
+
     let tempObj = {}
 
     Object.keys(data).forEach(key => tempObj[key] = data[key])
 
     console.log(tempObj)
 
-    for (const property in data) {
-      if (Array.isArray(tempObj[property])) {
-        tempObj[property] = []
-        for (let i = 0; i < data[property].length; i += 24) {
-          tempObj[property].push(data[property][i])
+    const timestampDifference = toQuery*1000 - fromQuery*1000
+    const differenceInDays = timestampDifference / (1000 * 3600 * 24)
+    if (differenceInDays < 2) {
+      for (const property in data) {
+        if (Array.isArray(tempObj[property])) {
+          tempObj[property] = []
+          tempObj[property].push(data[property][0])
+          tempObj[property].push(data[property][property.length])
+        }
+      }
+    } else if (differenceInDays >= 2 && differenceInDays <= 90) {
+      for (const property in data) {
+        if (Array.isArray(tempObj[property])) {
+          tempObj[property] = []
+          for (let i = 0; i < data[property].length; i += 24) {
+            tempObj[property].push(data[property][i])
+          }
         }
       }
     }
