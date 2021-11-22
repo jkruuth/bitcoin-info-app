@@ -70,7 +70,7 @@ const App = () => {
         if (Array.isArray(tempObj[property])) {
           tempObj[property] = []
           tempObj[property].push(data[property][0])
-          tempObj[property].push(data[property][property.length])
+          tempObj[property].push(data[property][24])
         }
       }
     } else if (differenceInDays >= 2 && differenceInDays <= 90) {
