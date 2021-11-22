@@ -65,6 +65,7 @@ const App = () => {
 
     const timestampDifference = toQuery*1000 - fromQuery*1000
     const differenceInDays = timestampDifference / (1000 * 3600 * 24)
+    
     if (differenceInDays < 2) {
       for (const property in data) {
         if (Array.isArray(tempObj[property])) {
