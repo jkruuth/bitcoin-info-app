@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/bitcoin-info-app/static/css/main.37def47f.chunk.css",
+    "main.js": "/bitcoin-info-app/static/js/main.4d47e78c.chunk.js",
+    "main.js.map": "/bitcoin-info-app/static/js/main.4d47e78c.chunk.js.map",
+    "runtime-main.js": "/bitcoin-info-app/static/js/runtime-main.6c44f0e6.js",
+    "runtime-main.js.map": "/bitcoin-info-app/static/js/runtime-main.6c44f0e6.js.map",
+    "static/js/2.3bb55f51.chunk.js": "/bitcoin-info-app/static/js/2.3bb55f51.chunk.js",
+    "static/js/2.3bb55f51.chunk.js.map": "/bitcoin-info-app/static/js/2.3bb55f51.chunk.js.map",
+    "index.html": "/bitcoin-info-app/index.html",
+    "static/css/main.37def47f.chunk.css.map": "/bitcoin-info-app/static/css/main.37def47f.chunk.css.map",
+    "static/js/2.3bb55f51.chunk.js.LICENSE.txt": "/bitcoin-info-app/static/js/2.3bb55f51.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6c44f0e6.js",
+    "static/js/2.3bb55f51.chunk.js",
+    "static/css/main.37def47f.chunk.css",
+    "static/js/main.4d47e78c.chunk.js"
+  ]
+}
