@@ -19,10 +19,6 @@ const BitcoinData = ({ fetchedData })  => {
 
   return (
     <div>
-     <ul>
-       {fetchedData.prices.map(item =>
-         <li key={item[0]}>{getDayMonthYear(item[0])} - {item[1]} </li>)}
-     </ul>
      <div className="content_wrapper">
       <DownwardTrend fetchedData={fetchedData}/>
       <HighestVolume fetchedData={fetchedData} getDayMonthYear={getDayMonthYear} />

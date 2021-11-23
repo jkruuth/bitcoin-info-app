@@ -12,10 +12,8 @@ const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
         tempObj.date.push(fetchedData.prices[i][0])
     }
 
-    let highestPrice = tempObj.prices[0]
     let lowestPrice = tempObj.prices[0]
 
-    let highestDay = tempObj.date[0]
     let lowestDay = tempObj.date[0]
 
 
@@ -26,6 +24,9 @@ const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
         }
     }
     
+    let highestPrice = tempObj.prices.indexOf(lowestPrice)
+    let highestDay = tempObj.date.indexOf(lowestDay)
+
     for (let i = tempObj.prices.indexOf(lowestPrice); i < tempObj.prices.length; i++) {
         if (tempObj.prices[i] > highestPrice) {
             highestPrice = tempObj.prices[i]
@@ -37,7 +38,7 @@ const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
 
     const streak = countStreak(fetchedData)
 
-    const showData = streak === fetchedData.prices.length 
+    const showData = streak === fetchedData.prices.length || lowestDay === highestDay
         ? 'You should not buy or sell on any given day' 
         : getDayMonthYear(lowestDay) + ' and ' + getDayMonthYear(highestDay)
 
