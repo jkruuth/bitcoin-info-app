@@ -3,7 +3,7 @@ const DownwardTrend = ({ fetchedData }) => {
   const streak = countStreak(fetchedData)
 
     return (
-        <div>
+        <div className="content">
             <h3>The maximum amount of days bitcoin´s price was decreasing in a row</h3>
             <p>Amount of days: {streak}</p>
         </div>

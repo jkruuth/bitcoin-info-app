@@ -1,0 +1,30 @@
+body {
+    background-color: #1A1E1F;
+    color: white;
+
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input {
+    margin: 10px;
+}
+
+.content {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    padding: 10px;
+    border-style: solid;
+}
+
+.content p {
+    font-size: 150%;
+    text-decoration: underline;
+}

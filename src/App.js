@@ -23,9 +23,11 @@ const BitcoinData = ({ fetchedData })  => {
        {fetchedData.prices.map(item =>
          <li key={item[0]}>{getDayMonthYear(item[0])} - {item[1]} </li>)}
      </ul>
-     <DownwardTrend fetchedData={fetchedData}/>
-     <HighestVolume fetchedData={fetchedData} getDayMonthYear={getDayMonthYear} />
-     <OptimalDay fetchedData={fetchedData} getDayMonthYear={getDayMonthYear}/>
+     <div className="content_wrapper">
+      <DownwardTrend fetchedData={fetchedData}/>
+      <HighestVolume fetchedData={fetchedData} getDayMonthYear={getDayMonthYear} />
+      <OptimalDay fetchedData={fetchedData} getDayMonthYear={getDayMonthYear}/>
+     </div>
     </div>
   )
 }
@@ -106,7 +108,7 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <div className="container">
       <h1>Bitcoin info app</h1>
 
       <h2>Enter the desired time interval </h2>

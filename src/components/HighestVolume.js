@@ -13,7 +13,7 @@ const HighestVolume = ({ fetchedData, getDayMonthYear }) => {
       }
 
     return (
-        <div>
+        <div className="content">
          <h3>The date with the highest trading volume and the volume on that day in euros</h3>
          <p>Date: {getDayMonthYear(highestTradingVol.date)}</p>
          <p>Volume in euros: {highestTradingVol.price}</p>

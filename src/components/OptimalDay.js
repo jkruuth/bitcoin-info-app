@@ -44,7 +44,7 @@ const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
 
 
     return (
-        <div>
+        <div className="content">
             <h3>A pair of days: The day to buy and the day to sell</h3>
             <p>{showData}</p>
         </div>
