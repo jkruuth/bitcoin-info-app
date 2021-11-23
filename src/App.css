@@ -18,6 +18,8 @@ input {
 }
 
 .content {
+    background-color: whitesmoke;
+    color: black;
     margin-left: 2rem;
     margin-top: 3rem;
     padding: 10px;

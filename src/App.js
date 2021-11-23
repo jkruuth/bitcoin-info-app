@@ -40,7 +40,6 @@ const App = () => {
   const [toDate, setToDate] = useState('')
 
   const fetchData = async () => {
-
     const oneHour = 3600
 
     const fromQuery = new Date(fromDate).getTime() / 1000
@@ -57,13 +56,9 @@ const App = () => {
 
     const { data } = res
     
-    console.log(data)
-
     let tempObj = {}
 
     Object.keys(data).forEach(key => tempObj[key] = data[key])
-
-    console.log(tempObj)
 
     const timestampDifference = toQuery*1000 - fromQuery*1000
     const differenceInDays = timestampDifference / (1000 * 3600 * 24)
@@ -88,8 +83,6 @@ const App = () => {
     }
 
     setFetchedData(tempObj)
-
-    console.log(tempObj)
 
     setFromDate('')
     setToDate('')

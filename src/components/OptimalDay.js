@@ -12,7 +12,6 @@ const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
         tempObj.date.push(fetchedData.prices[i][0])
     }
 
-    console.log(tempObj)
     let highestPrice = tempObj.prices[0]
     let lowestPrice = tempObj.prices[0]
 
