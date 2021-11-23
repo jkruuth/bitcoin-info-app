@@ -113,7 +113,7 @@ const App = () => {
 
       <h2>Enter the desired time interval </h2>
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div>
           from
           <input

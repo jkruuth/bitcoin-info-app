@@ -39,7 +39,7 @@ const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
     const streak = countStreak(fetchedData)
 
     const showData = streak === fetchedData.prices.length 
-        ? 'You should not buy nor sell on any day in given time interval' 
+        ? 'You should not buy or sell on any given day' 
         : getDayMonthYear(lowestDay) + ' and ' + getDayMonthYear(highestDay)
 
 
