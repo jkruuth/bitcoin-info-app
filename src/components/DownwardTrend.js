@@ -12,10 +12,12 @@ const DownwardTrend = ({ fetchedData }) => {
 
 export const decreasing = (obj, index) => {
   let streak = 1
-  const tempArr = obj.prices.slice(1)
 
-  for (let i = index; i < tempArr.length; i++) {
-    if (tempArr[i][1] < obj.prices[i][1]) streak++
+
+  if (index >= obj.prices.length) return 0
+
+  for (let i = index; i < obj.prices.length - 1; i++) {
+    if (obj.prices[i][1] > obj.prices[i+1][1]) streak++
     else break    
   }
 
@@ -31,7 +33,7 @@ export const countStreak = obj => {
     if (streak > currentBest) currentBest = streak
   }
 
-  return currentBest
+  return currentBest - 1
 }
 
 export default DownwardTrend
