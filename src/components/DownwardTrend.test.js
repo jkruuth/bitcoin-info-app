@@ -11,12 +11,20 @@ test('Testing countStreak function', () => {
         prices: [[1,9],[1,10],[1,11],[1,12],[1,16],[1,29],[1,49]]
     }
 
+    const testObj3 = {
+        prices: []
+    }
+
     const testResult1 = countStreak(testObj1)
 
     const testResult2 = countStreak(testObj2)
 
+    const testResult3 = countStreak(testObj3)
+
     expect(testResult1).toBe(6)
 
     expect(testResult2).toBe(0)
+
+    expect(testResult3).toBe(0)
 
 })
