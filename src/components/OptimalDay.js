@@ -1,5 +1,8 @@
 import { countStreak } from "./DownwardTrend"
 
+/*
+    Component finds optimal days to buy and sell bitcoin based on days price
+*/
 const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
 
     let tempObj = {
@@ -13,7 +16,6 @@ const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
     }
 
     let lowestPrice = tempObj.prices[0]
-
     let lowestDay = tempObj.date[0]
 
 
@@ -34,14 +36,10 @@ const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
         } 
     }
 
-    
-
     const streak = countStreak(fetchedData)
-
     const showData = streak === fetchedData.prices.length || lowestDay === highestDay
         ? 'You should not buy or sell on any given day' 
         : getDayMonthYear(lowestDay) + ' and ' + getDayMonthYear(highestDay)
-
 
     return (
         <div className="content">

@@ -1,3 +1,6 @@
+/*
+  Component counts the maximum amount of days  bitcoin's price was decreasing in a row
+*/
 const DownwardTrend = ({ fetchedData }) => {
   
   const streak = countStreak(fetchedData)
@@ -10,6 +13,9 @@ const DownwardTrend = ({ fetchedData }) => {
     )
 }
 
+/*
+  Calculates the length of a bearish trend
+*/
 export const decreasing = (obj, index) => {
   let streak = 1
   for (let i = index; i < obj.prices.length-1; i++) {
@@ -20,6 +26,9 @@ export const decreasing = (obj, index) => {
     return streak
 }
 
+/*
+  Finds the length of the longest descending subset from the array
+*/
 export const countStreak = obj => {
   let currentBest = 0
   let streak = 1

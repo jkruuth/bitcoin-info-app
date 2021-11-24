@@ -5,12 +5,18 @@ import HighestVolume from "./components/HighestVolume";
 import OptimalDay from "./components/OptimalDay";
 import "./App.css"
 
+/* 
+  Initializes components with functionality. Component also checks 
+*/
 const BitcoinData = ({ fetchedData })  => {
   
   if (Object.keys(fetchedData).length === 0 || (fetchedData.prices.length === 1)) {
     return <p>Not enough fetched data</p>  
   } 
 
+  /*
+    Converts timestamp to valid (YYYY-MM-DD) format 
+  */
   const getDayMonthYear = (timestamp) => {
     const date = new Date(timestamp)
 
@@ -28,13 +34,18 @@ const BitcoinData = ({ fetchedData })  => {
   )
 }
 
-
+/*
+  Initializes application. App() includes current states and passes them to components.
+*/
 const App = () => {
   
   const [fetchedData, setFetchedData] = useState({})
   const [fromDate, setFromDate] = useState('')
   const [toDate, setToDate] = useState('')
 
+  /*
+    Fetches data from the API 
+  */
   const fetchData = async () => {
     const oneHour = 3600
 
@@ -49,7 +60,6 @@ const App = () => {
     }
 
     const res = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from=${fromQuery}&to=${toQuery + oneHour}`)
-
     const { data } = res
     
     let tempObj = {}
@@ -84,6 +94,9 @@ const App = () => {
     setToDate('')
   }
 
+  /*
+    Function handles the user given input and updates the right states
+  */
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -121,9 +134,7 @@ const App = () => {
         </div>
         <button type='submit'>search</button>
       </form>
-
     <BitcoinData fetchedData={fetchedData} />
-
     </div>
   );
 }

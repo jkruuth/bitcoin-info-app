@@ -1,7 +1,6 @@
 body {
     background-color: #1A1E1F;
     color: white;
-
 }
 
 h2 {
@@ -24,6 +23,7 @@ input {
     margin-top: 3rem;
     padding: 10px;
     border-style: solid;
+    border-color: #09a6b1;
 }
 
 .content p {
