@@ -3,6 +3,8 @@
 
 This is the repository for an application which gives user different kinds of data from bitcoin based on given date range.
 
+Link to the application: [https://jkruuth.github.io/bitcoin-info-app/]
+
 ## Available Scripts
 
 In the project directory, you can run:
