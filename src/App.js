@@ -58,38 +58,42 @@ const App = () => {
       setToDate('')
       return
     }
-
-    const res = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from=${fromQuery}&to=${toQuery + oneHour}`)
-    const { data } = res
+    try {
+      const res = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from=${fromQuery}&to=${toQuery + oneHour}`)
+      const { data } = res
     
-    let tempObj = {}
+      let tempObj = {}
 
-    Object.keys(data).forEach(key => tempObj[key] = data[key])
+      Object.keys(data).forEach(key => tempObj[key] = data[key])
 
-    const timestampDifference = toQuery*1000 - fromQuery*1000
-    const differenceInDays = timestampDifference / (1000 * 3600 * 24)
+      const timestampDifference = toQuery*1000 - fromQuery*1000
+      const differenceInDays = timestampDifference / (1000 * 3600 * 24)
     
-    if (differenceInDays < 2) {
-      for (const property in data) {
-        if (Array.isArray(tempObj[property])) {
-          tempObj[property] = []
-          tempObj[property].push(data[property][0])
-          tempObj[property].push(data[property][24])
+      if (differenceInDays < 2) {
+        for (const property in data) {
+          if (Array.isArray(tempObj[property])) {
+            tempObj[property] = []
+            tempObj[property].push(data[property][0])
+            tempObj[property].push(data[property][24])
+          }
         }
-      }
-    } else if (differenceInDays >= 2 && differenceInDays <= 90) {
-      for (const property in data) {
-        if (Array.isArray(tempObj[property])) {
-          tempObj[property] = []
-          for (let i = 0; i < data[property].length; i += 24) {
-            tempObj[property].push(data[property][i])
+      } else if (differenceInDays >= 2 && differenceInDays <= 90) {
+        for (const property in data) {
+          if (Array.isArray(tempObj[property])) {
+            tempObj[property] = []
+            for (let i = 0; i < data[property].length; i += 24) {
+              tempObj[property].push(data[property][i])
+            }
           }
         }
       }
+
+      setFetchedData(tempObj)
+
+    } catch (error) {
+      console.log(error)
     }
-
-    setFetchedData(tempObj)
-
+    
     setFromDate('')
     setToDate('')
   }
