@@ -60,7 +60,7 @@ const App = () => {
     }
     try {
       const res = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from=${fromQuery}&to=${toQuery + oneHour}`)
-      const { data } = res
+      const { data } =  res
     
       let tempObj = {}
 
@@ -89,7 +89,7 @@ const App = () => {
       }
 
       setFetchedData(tempObj)
-
+      console.log(tempObj)
     } catch (error) {
       console.log(error)
     }
@@ -112,6 +112,19 @@ const App = () => {
 
     fetchData()
   }
+
+  /* const obj = {
+    hinnat: [
+      [1,2],
+      [1,2],
+      [1,3],
+      [1,4],
+      [1,5],
+      [1,6],
+    ]
+  }
+
+  obj.hinnat.map(subset => console.log(subset[1])) */
 
   return (
     <div className="container">
