@@ -113,19 +113,6 @@ const App = () => {
     fetchData()
   }
 
-  /* const obj = {
-    hinnat: [
-      [1,2],
-      [1,2],
-      [1,3],
-      [1,4],
-      [1,5],
-      [1,6],
-    ]
-  }
-
-  obj.hinnat.map(subset => console.log(subset[1])) */
-
   return (
     <div className="container">
       <h1>Bitcoin info app</h1>

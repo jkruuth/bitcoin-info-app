@@ -6,35 +6,20 @@ import { countStreak } from "./DownwardTrend"
 const OptimalDay = ({ fetchedData, getDayMonthYear }) => {
 
     const minValue = fetchedData.prices.reduce((prev, current) => (prev[1] < current[1]) ? prev : current)
-    console.log(minValue)
 
-    let tempObj = {
-        prices: [],
-        date: []
-    }
+    //let lowestPrice = minValue[1]
+    const lowestDay = minValue[0]
 
-    fetchedData.prices.forEach(data => {
-        tempObj.prices.push(data[1])
-        tempObj.date.push(data[0])
-    })
+    const tempLength = fetchedData.prices.filter(elem => elem[0] > lowestDay).length
 
-    console.log(tempObj)
+    const maxValue = (tempLength > 0) ? fetchedData.prices
+    .filter(elem => elem[0] > lowestDay)
+    .reduce((prev, current) => (prev[1] > current[1]) ? prev : current) : minValue
 
-    let lowestPrice = minValue[1]
-    let lowestDay = minValue[0]
-    
-    let highestPrice = tempObj.prices.indexOf(lowestPrice)
-    let highestDay = tempObj.date.indexOf(lowestDay)
-
-    for (let i = tempObj.prices.indexOf(lowestPrice); i < tempObj.prices.length; i++) {
-        if (tempObj.prices[i] > highestPrice) {
-            highestPrice = tempObj.prices[i]
-            highestDay = tempObj.date[i]
-        } 
-    }
+    //let highestPrice = maxValue[1]
+    const highestDay = maxValue[0]
 
     const streak = countStreak(fetchedData)
-    console.log(streak)
     const showData = streak === fetchedData.prices.length || lowestDay === highestDay
         ? 'You should not buy or sell on any given day' 
         : getDayMonthYear(lowestDay) + ' and ' + getDayMonthYear(highestDay)
